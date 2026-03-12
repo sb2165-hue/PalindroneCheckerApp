@@ -8,27 +8,27 @@ public class PalindromeCheckerApp {
         System.out.print("Enter a string: ");
         String str = sc.nextLine();
 
-        Queue<Character> queue = new LinkedList<>();
-        Stack<Character> stack = new Stack<>();
+        Deque<Character> deque = new LinkedList<>();
 
-        // Add characters to Queue and Stack
+        // Insert characters into deque
         for (int i = 0; i < str.length(); i++) {
-            char ch = str.charAt(i);
-            queue.add(ch);   // enqueue
-            stack.push(ch);  // push
+            deque.addLast(str.charAt(i));
         }
 
         boolean palindrome = true;
 
-        // Compare Queue and Stack
-        while (!queue.isEmpty()) {
-            if (queue.remove() != stack.pop()) {
+        // Compare front and rear characters
+        while (deque.size() > 1) {
+            char first = deque.removeFirst();
+            char last = deque.removeLast();
+
+            if (first != last) {
                 palindrome = false;
                 break;
             }
         }
 
-        // Result
+        // Print result
         if (palindrome) {
             System.out.println("It is a Palindrome");
         } else {
